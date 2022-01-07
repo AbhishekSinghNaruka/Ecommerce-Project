@@ -24,6 +24,7 @@ async function getProducts(req,res,next){
   res.json({
     success:"true",
     count:products.length,
+    resPerPage,
     productCount,
     products
   });
