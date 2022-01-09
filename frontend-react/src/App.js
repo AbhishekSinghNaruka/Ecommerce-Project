@@ -11,9 +11,10 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-        <div className="container conatiner-fluid">
+        <div className="container container-fluid">
           <Routes>
             <Route path="/" element={<Home />}/>
+            <Route path="/search/:keyword" element={<Home />} exact/>
             <Route path="/product/:pid" element={<ProductDetails />} exact/>
           </Routes>
         </div>

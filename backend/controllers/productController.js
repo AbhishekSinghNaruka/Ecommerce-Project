@@ -11,19 +11,15 @@ async function getProducts(req,res,next){
                       .search()
                       .filter()
                       .pagination(resPerPage);
-    let products=await apiFeatures.query;
-   /*Product.find({...keyword},(err,products) => {
-      if(err)
-        return next(new AppError(err.message,404));
-        res.json({
-          success:"true",
-          products
-        });
-  });*/
-//  console.log(products);
+  let products=await apiFeatures.query;
+  let filteredProductsCount=products.length;
+  apiFeatures.pagination(resPerPage);
+
+  products=await apiFeatures.query;
+
   res.json({
     success:"true",
-    count:products.length,
+    filteredProductsCount,
     resPerPage,
     productCount,
     products
