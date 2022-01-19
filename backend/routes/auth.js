@@ -9,6 +9,8 @@ router.post('/register',user.registerUser);
 router.post('/login',user.loginUser);
 router.get('/logout',user.logoutUser);
 
+router.get('/me',isAuthenticated, user.getUser);
+
 router.post('/password/forgot',user.forgotPassword);
 router.put('/password/reset/:token',user.resetPassword);
 router.put('/password/updatePassword',isAuthenticated,user.changePassword);

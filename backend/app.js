@@ -5,14 +5,20 @@ const express = require('express');
 const product = require("./routes/product.js");
 const auth = require("./routes/auth.js");
 const order = require("./routes/order.js");
+const AppError = require('./util/appError');
 
 const cookieParser = require('cookie-parser');
-const AppError = require('./util/appError');
+const bodyparser=require('body-parser');
+const cloudinary=require('cloudinary');
+const fileUpload = require('express-fileupload');
+
 
 const app = express();
 
 app.use(express.json());
+app.use(bodyparser.urlencoded({extended:true}));
 app.use(cookieParser());
+app.use(fileUpload());
 
 app.use("/api",product);
 app.use("/api",auth);

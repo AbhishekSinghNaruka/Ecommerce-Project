@@ -24,14 +24,14 @@ const userSchema = new mongoose.Schema({
     minlength: [6,"password must greater than 6 characters"],
     select:false,
   },
-  avtar:{
+  avatar:{
     public_id:{
-      type: 'string'
-      //required: true,
+      type: 'string',
+      required: true
     },
     url:{
-      type: 'string'
-    //  required:true
+      type: 'string',
+      required:true
     }
   },
   role:{
