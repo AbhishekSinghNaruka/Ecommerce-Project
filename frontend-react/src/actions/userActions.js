@@ -43,6 +43,48 @@ export const registerUser =(userData) =>async(dispatch)=>{
   }
 };
 
+export const updateProfile =(userData) =>async(dispatch)=>{
+  try {
+    dispatch({type:"UPDATE_PROFILE_REQUEST"});
+    const config={
+      headers:{
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    const {data} = await axios.put('/api/profile/updateProfile',userData,config);
+    dispatch({
+      type:'UPDATE_PROFILE_SUCCESS',
+      payload:data.success
+    });
+  } catch (error) {
+    dispatch({
+      type:'UPDATE_PROFILE_FAILURE',
+      payload:error.response.data.message
+    });
+  }
+};
+
+export const updatePassword =(passwords) =>async(dispatch)=>{
+  try {
+    dispatch({type:"UPDATE_PASSWORD_REQUEST"});
+    const config={
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }
+    const {data} = await axios.put('/api/password/updatePassword',passwords,config);
+    dispatch({
+      type:'UPDATE_PASSWORD_SUCCESS',
+      payload:data.success
+    });
+  } catch (error) {
+    dispatch({
+      type:'UPDATE_PASSWORD_FAILURE',
+      payload:error.response.data.message
+    });
+  }
+};
+
 export const loadUser =() =>async(dispatch)=>{
   try {
     dispatch({type:"LOAD_USER_REQUEST"});
@@ -69,6 +111,7 @@ export const logout =() =>async(dispatch)=>{
     });
   }
 };
+
 
 export const clearError = () => async(dispatch) => {
   dispatch({type:'CLEAR_ERROR'});

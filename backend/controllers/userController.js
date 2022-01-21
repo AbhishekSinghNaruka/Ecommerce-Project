@@ -16,7 +16,7 @@ async function registerUser(req,res,next){
     })
 
     const { name, email, password } = req.body;
-    
+
     const user = await User.create({
         name,
         email,
@@ -25,7 +25,7 @@ async function registerUser(req,res,next){
             public_id: result.public_id,
             url: result.secure_url
         }
-    })
+    });
 
     sendToken(user, 200, res);
 }
@@ -143,20 +143,33 @@ async function changePassword(req,res,next){
   sendToken(user,200,res);
 }
 
-function updateProfile(req,res,next){
+async function updateProfile(req,res,next){
   const updatedData = {name:req.body.name,email:req.body.email};
-  User.findByIdAndUpdate(req.user.id,updatedData,{
-    new:true,
-    runValidators:true,
-    useFindAndModify:false
-  },(err,user) => {
-    if(err)
-      return next(err);
-    res.status(200).json({
-      sucess:true,
-      user
-    });
-  });
+
+  if(req.body.avatar!==''){
+    const user = await User.findById(req.user.id);
+    const image_id=user.avatar.url;
+    console.log(image_id);
+    const res1= await cloudinary.v2.uploader.destroy(image_id);
+    const result=await cloudinary.v2.uploader.upload(req.body.avatar, {
+          folder: 'avatars',
+          width: 150,
+          crop: "scale"
+      });
+      updatedData.avatar={
+        public_id:result.public_id,
+        url:result.secure_url
+      }
+      const updatedUser =await User.findByIdAndUpdate(req.user.id,updatedData,{
+        new:true,
+        runValidators:true,
+        useFindAndModify:false
+      });
+      res.status(200).json({
+        success:true,
+        user:updatedUser
+      });
+  }
 }
 
 function getAllUsers(req,res,next){
