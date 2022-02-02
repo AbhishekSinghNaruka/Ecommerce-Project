@@ -65,7 +65,7 @@ async function forgotPassword(req,res,next){
 
     user.save({validateBeforeSave:false});
 
-    const resetURL = `${req.protocol}://${req.get('host')}/api/password/reset/${resetToken}`;
+    const resetURL = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
     const message =`Your password reset token is as follows: ${resetURL}`;
 
@@ -145,7 +145,8 @@ async function changePassword(req,res,next){
 
 async function updateProfile(req,res,next){
   const updatedData = {name:req.body.name,email:req.body.email};
-
+  console.log(updatedData);
+  console.log(req.body.avatar);
   if(req.body.avatar!==''){
     const user = await User.findById(req.user.id);
     const image_id=user.avatar.url;

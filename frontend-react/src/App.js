@@ -13,6 +13,8 @@ import ProductDetails from './components/ProductDetails';
 import Profile from './components/Profile';
 import UpdateProfile from './components/UpdateProfile';
 import UpdatePassword from './components/user/UpdatePassword'
+import ForgotPassword from './components/user/ForgotPassword'
+import NewPassword from './components/user/NewPassword'
 
 import {loadUser} from './actions/userActions';
 
@@ -36,6 +38,8 @@ function App() {
             <Route path="/me" element={<Profile />} />
             <Route path="/me/update" element={<UpdateProfile />} exact/>
             <Route path="/password/update" element={<UpdatePassword />} />
+            <Route path="/password/forgot" element={<ForgotPassword />} />
+            <Route path="/password/reset/:token" element={<NewPassword />} />
           </Routes>
         </div>
         <Footer />
