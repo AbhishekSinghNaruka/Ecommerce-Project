@@ -12,9 +12,10 @@ import Register from './components/Register';
 import ProductDetails from './components/ProductDetails';
 import Profile from './components/Profile';
 import UpdateProfile from './components/UpdateProfile';
-import UpdatePassword from './components/user/UpdatePassword'
-import ForgotPassword from './components/user/ForgotPassword'
-import NewPassword from './components/user/NewPassword'
+import UpdatePassword from './components/user/UpdatePassword';
+import ForgotPassword from './components/user/ForgotPassword';
+import NewPassword from './components/user/NewPassword';
+import Cart from './components/cart/Cart';
 
 import {loadUser} from './actions/userActions';
 
@@ -33,6 +34,9 @@ function App() {
             <Route path="/" element={<Home />}/>
             <Route path="/search/:keyword" element={<Home />} exact/>
             <Route path="/product/:pid" element={<ProductDetails />} exact/>
+
+            <Route path="/cart" element={<Cart />}/>
+
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/me" element={<Profile />} />
