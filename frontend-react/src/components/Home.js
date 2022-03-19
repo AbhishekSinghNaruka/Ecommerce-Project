@@ -21,7 +21,7 @@ const Home = ()=> {
   const [price,setPrice] = useState([1,100000]);
   const [category,setCategory] = useState('');
   const [rating,setRating] =useState(0);
-  
+
   const categories=[
     "Electronics",
     "Food",

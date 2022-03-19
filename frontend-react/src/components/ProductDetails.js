@@ -70,7 +70,7 @@ const ProductDetails =() =>{
 
         <hr />
 
-        <p id="product_price">Rs. {product.price}</p>
+        <p id="product_price">&#8377; {product.price}</p>
         <div className="stockCounter d-inline">
           <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
 

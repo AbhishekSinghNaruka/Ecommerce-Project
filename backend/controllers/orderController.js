@@ -10,6 +10,7 @@ function newOrder (req,res,next){
     orderItems:req.body.orderItems,
     itemsPriceTotal:req.body.itemsPriceTotal,
     shippingPrice:req.body.shippingPrice,
+    taxPrice:req.body.taxPrice,
     totalPrice:req.body.totalPrice,
     paymnetInfo:req.body.paymnetInfo,
     paidAt:Date.now(),

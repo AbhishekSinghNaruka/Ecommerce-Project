@@ -1,5 +1,5 @@
 
-export const cartReducers = (state={cartItems:[]},action) => {
+export const cartReducers = (state={cartItems:[], shippingInfo:{}},action) => {
   switch(action.type){
     case "ADD_TO_CART":
       const item = action.payload;
@@ -22,6 +22,12 @@ export const cartReducers = (state={cartItems:[]},action) => {
           ...state,
           cartItems:state.cartItems.filter(it => it.product!==action.payload)
       }
+
+      case "SAVE_SHIPPING_INFO":
+        return{
+          ...state,
+          shippingInfo:action.payload
+        }
 
       default: return state
   }

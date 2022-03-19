@@ -1,18 +1,18 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-//import {useAlert} from 'react-alert';
+import {useAlert} from 'react-alert';
 import {useDispatch,useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 
 import {addItemToCart,removeItemFromCart} from '../../actions/cartActions';
 
 const Cart = () => {
-  //const alert = useAlert();
+  const alert = useAlert();
   const dispatch=useDispatch();
-
+  const navigate = useNavigate();
   const {cartItems} = useSelector(state => state.cart);
 
   const removeItemFromCartHandler = (id) =>{
-    console.log("clicked");
     dispatch(removeItemFromCart(id));
   };
 
@@ -29,6 +29,10 @@ const Cart = () => {
       return;
     dispatch(addItemToCart(id,newQty));
   };
+
+  const checkoutHandler = () => {
+    navigate('/login?redirect=shipping');
+  }
 
   return(
     <React.Fragment>
@@ -53,7 +57,7 @@ const Cart = () => {
 
 
                       <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                        <p id="card_item_price">${item.price}</p>
+                        <p id="card_item_price">&#8377;{item.price}</p>
                       </div>
 
                       <div className="col-4 col-lg-3 mt-4 mt-lg-0">
@@ -82,10 +86,10 @@ const Cart = () => {
                 <h4>Order Summary</h4>
                 <hr />
                 <p>Subtotal:  <span className="order-summary-values">{cartItems.reduce((accumulator, item) => (accumulator + Number(item.quantity)),0)} (Units)</span></p>
-                <p>Est. total: <span className="order-summary-values">${(cartItems.reduce((accumulator, item) => accumulator + item.quantity*item.price,0)).toFixed(2)}</span></p>
+                <p>Est. total: <span className="order-summary-values">&#8377;{(cartItems.reduce((accumulator, item) => accumulator + item.quantity*item.price,0)).toFixed(2)}</span></p>
 
                 <hr />
-                <button id="checkout_btn" className="btn btn-primary btn-block">Check out</button>
+                <button id="checkout_btn" className="btn btn-primary btn-block" onClick={checkoutHandler}>Check out</button>
               </div>
             </div>
           </div>

@@ -5,6 +5,7 @@ const express = require('express');
 const product = require("./routes/product.js");
 const auth = require("./routes/auth.js");
 const order = require("./routes/order.js");
+const payment = require("./routes/payment.js");
 const AppError = require('./util/appError');
 
 const cookieParser = require('cookie-parser');
@@ -23,7 +24,7 @@ app.use(fileUpload());
 app.use("/api",product);
 app.use("/api",auth);
 app.use("/api",order);
-
+app.use("/api",payment);
 
 app.use((err,req,res,next) => {
   err.statusCode = err.statusCode || 500;
