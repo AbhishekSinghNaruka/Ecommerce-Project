@@ -53,7 +53,7 @@ const orderSchema = new mongoose.Schema({
       ref:"Product"
     },
   }],
-  paymnetInfo:{
+  paymentInfo:{
     id:{
       type:String
     },

@@ -12,7 +12,7 @@ function newOrder (req,res,next){
     shippingPrice:req.body.shippingPrice,
     taxPrice:req.body.taxPrice,
     totalPrice:req.body.totalPrice,
-    paymnetInfo:req.body.paymnetInfo,
+    paymentInfo:req.body.paymentInfo,
     paidAt:Date.now(),
     user:req.user.id
   }, (err,order) => {
