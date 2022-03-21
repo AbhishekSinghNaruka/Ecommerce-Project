@@ -43,7 +43,7 @@ const OrderDetails = () => {
               <p><b>Name:</b> {order.user && order.user.name}</p>
               <p><b>Phone:</b> {order.shippingInfo && order.shippingInfo.phoneNum}</p>
               <p className="mb-4"><b>Address:</b>{shippingAddress}</p>
-              <p><b>Amount:</b> $1111</p>
+              <p><b>Amount:</b> {totalPrice}</p>
 
               <hr />
 
